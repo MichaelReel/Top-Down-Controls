@@ -19,6 +19,7 @@ animations = [ {
 
 [sub_resource type="Animation" id=3]
 resource_name = "draw"
+length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -30,6 +31,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Ammo:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 36, 0 ), Vector2( 22, 0 ), Vector2( 18, 0 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -47,6 +60,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Ammo:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 36, 0 ) ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "loose"
@@ -62,6 +87,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 4, 0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Ammo:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 36, 0 ) ]
+}
 
 [node name="PlayerControlledCharacter" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -70,9 +107,14 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+z_index = 2
 frames = SubResource( 2 )
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
 anims/draw = SubResource( 3 )
 anims/look = SubResource( 4 )
 anims/loose = SubResource( 5 )
+
+[node name="Ammo" type="Node2D" parent="AnimatedSprite"]
+position = Vector2( 18, 0 )

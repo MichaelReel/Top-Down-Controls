@@ -5,6 +5,7 @@ export (PackedScene) var Arrow
 const SPEED = 200
 onready var sprite := $AnimatedSprite
 onready var anim := $AnimatedSprite/AnimationPlayer
+onready var ammo_slot := $AnimatedSprite/Ammo
 
 var bow_draw := false
 var bow_taut := false
@@ -24,9 +25,11 @@ func _physics_process(delta : float):
 	# Rotate the sprite (but not the collision shape)
 	if clicks["a"]:
 		if bow_draw == false and bow_taut == false:
-			bow_draw = true
+			_load_arrow()
 			anim.play("draw")
+			bow_draw = true
 	elif bow_draw:
+		_drop_arrow()
 		anim.play("look")
 		bow_draw = false
 	elif bow_taut:
@@ -55,7 +58,21 @@ func _get_input_clicks() -> Dictionary:
 		"b" : Input.is_action_pressed("click_b"),
 	}
 
-func _fire_arrow():
+func _load_arrow():
 	var arrow = Arrow.instance()
+#	arrow.set_enabled(false)
+	ammo_slot.add_child(arrow)
+
+func _drop_arrow():
+	var arrow := ammo_slot.get_child(0)
+	ammo_slot.remove_child(arrow)
+	arrow.queue_free()
+
+func _fire_arrow():
+	var arrow := ammo_slot.get_child(0)
+	var arrow_transform = arrow.global_transform
+	ammo_slot.remove_child(arrow)
 	owner.add_child(arrow)
 	arrow.set_transform(sprite.global_transform)
+#	arrow.set_flying(true)
+	arrow.flying = true
