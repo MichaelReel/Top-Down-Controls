@@ -39,7 +39,6 @@ func _physics_process(delta : float):
 		bow_loosed = true
 
 func _anim_done(anim_name : String):
-	print("Animation done " + str(bow_draw) + ", " + str(bow_taut))
 	if anim_name == "draw":
 		bow_taut = true
 		bow_draw = false
