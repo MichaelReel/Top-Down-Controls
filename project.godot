@@ -16,8 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="TopDownControls"
-run/main_scene="res://Scene2D.tscn"
+run/main_scene="res://scenes/main/SceneHandler.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Server="*res://scenes/singletons/Server.gd"
 
 [input]
 
@@ -59,7 +63,3 @@ click_b={
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
-
-[rendering]
-
-environment/default_environment="res://archer/default_env.tres"

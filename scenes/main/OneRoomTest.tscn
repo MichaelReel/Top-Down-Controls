@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://archer/PlayerControlledCharacter.tscn" type="PackedScene" id=1]
-[ext_resource path="res://archer/Arrow.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/support/PlayerControlledCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/support/arrow/Arrow.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 512, 10 )
@@ -21,7 +21,7 @@ __meta__ = {
 
 [node name="PlayerControlledCharacter" parent="." instance=ExtResource( 1 )]
 position = Vector2( 518, 300 )
-Arrow = ExtResource( 3 )
+Arrow = ExtResource( 2 )
 
 [node name="BoundaryColliders" type="Node2D" parent="."]
 
