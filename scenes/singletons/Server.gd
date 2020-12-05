@@ -2,7 +2,7 @@ extends Node
 
 var network = NetworkedMultiplayerENet.new()
 var ip = "localhost"
-var port = 1909
+var port = 1980
 
 var request_queue = {}
 
