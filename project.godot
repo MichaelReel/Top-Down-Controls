@@ -15,13 +15,14 @@ _global_script_class_icons={
 
 [application]
 
-config/name="TopDownControls"
+config/name="Top Down Client"
 run/main_scene="res://scenes/main/SceneHandler.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Server="*res://scenes/singletons/Server.gd"
+Gateway="*res://scenes/singletons/Gateway.gd"
 
 [input]
 
