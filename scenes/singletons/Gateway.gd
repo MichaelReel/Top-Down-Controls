@@ -11,12 +11,6 @@ var port = 1981
 var username : String
 var password : String
 
-func _ready():
-	print("READY BEING CALLED!")
-	# TEST: Until login box added:
-	connect_to_server("munch", "munch")
-	# /TEST
-
 func _process(delta):
 	if get_custom_multiplayer() == null:
 		return

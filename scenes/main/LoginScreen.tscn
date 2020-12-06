@@ -1,0 +1,138 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/gui/background.png" type="Texture" id=1]
+[ext_resource path="res://assets/gui/button_01.png" type="Texture" id=2]
+[ext_resource path="res://assets/gui/button_03.png" type="Texture" id=3]
+[ext_resource path="res://assets/gui/button_02.png" type="Texture" id=4]
+[ext_resource path="res://assets/gui/fonts/Eadui_24.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/gui/fonts/Eadui_18.tres" type="DynamicFont" id=6]
+[ext_resource path="res://scenes/main/LoginScreen.gd" type="Script" id=7]
+
+[node name="LoginScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="NinePatchRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -125.0
+margin_right = 100.0
+margin_bottom = 125.0
+rect_min_size = Vector2( 200, 250 )
+texture = ExtResource( 1 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = -95.0
+margin_right = 80.0
+margin_bottom = 95.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Background/VBoxContainer"]
+margin_right = 160.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 5 )
+text = "LOGIN SCREEN"
+align = 1
+valign = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/VBoxContainer"]
+margin_top = 29.0
+margin_right = 160.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="UsernameTitle" type="Label" parent="Background/VBoxContainer"]
+margin_top = 38.0
+margin_right = 160.0
+margin_bottom = 57.0
+custom_fonts/font = ExtResource( 6 )
+text = "Username"
+
+[node name="Username" type="LineEdit" parent="Background/VBoxContainer"]
+margin_top = 61.0
+margin_right = 160.0
+margin_bottom = 85.0
+
+[node name="PasswordTitle" type="Label" parent="Background/VBoxContainer"]
+margin_top = 89.0
+margin_right = 160.0
+margin_bottom = 108.0
+custom_fonts/font = ExtResource( 6 )
+text = "Password"
+
+[node name="Password" type="LineEdit" parent="Background/VBoxContainer"]
+margin_top = 112.0
+margin_right = 160.0
+margin_bottom = 136.0
+
+[node name="LoginButton" type="TextureButton" parent="Background/VBoxContainer"]
+margin_left = 19.0
+margin_top = 140.0
+margin_right = 139.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 120, 30 )
+size_flags_horizontal = 4
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 3 )
+texture_focused = ExtResource( 4 )
+expand = true
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/LoginButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 5 )
+text = "Login"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreateAccountButton" type="TextureButton" parent="Background/VBoxContainer"]
+margin_left = 19.0
+margin_top = 174.0
+margin_right = 139.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 120, 30 )
+size_flags_horizontal = 4
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 3 )
+texture_focused = ExtResource( 4 )
+expand = true
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/CreateAccountButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 5 )
+text = "Register"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Background/VBoxContainer/LoginButton" to="." method="_on_LoginButton_pressed"]
