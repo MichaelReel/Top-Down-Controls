@@ -8,14 +8,14 @@ var connected := false
 var request_queue := {}
 
 func connect_to_server():
-	network.create_client(ip, port)
+	var _ignore = network.create_client(ip, port)
 	get_tree().set_network_peer(network)
 	
 	print("Loading networking: " + str(network))
 	
-	network.connect("connection_failed", self, "_on_connection_failed")
-	network.connect("connection_succeeded", self, "_on_connection_succeeded")
-	network.connect("server_disconnected", self, "_on_server_disconnected")
+	_ignore = network.connect("connection_failed", self, "_on_connection_failed")
+	_ignore = network.connect("connection_succeeded", self, "_on_connection_succeeded")
+	_ignore = network.connect("server_disconnected", self, "_on_server_disconnected")
 
 func _on_connection_failed():
 	print("Failed to connect")
@@ -40,4 +40,4 @@ remote func return_skill_data(s_value, inst_id : String):
 	var target : Object = request_queue[inst_id]["target"]
 	var method : String = request_queue[inst_id]["method"]
 	target.call(method, s_value)
-	request_queue.erase(inst_id)
+	var _ignore = request_queue.erase(inst_id)

@@ -20,7 +20,7 @@ __meta__ = {
 }
 
 [node name="PlayerControlledCharacter" parent="." instance=ExtResource( 1 )]
-position = Vector2( 518, 300 )
+position = Vector2( 190.62, 148.671 )
 Arrow = ExtResource( 2 )
 
 [node name="BoundaryColliders" type="Node2D" parent="."]

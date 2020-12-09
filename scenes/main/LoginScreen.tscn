@@ -41,7 +41,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -80.0
-margin_top = -95.0
+margin_top = -107.0
 margin_right = 80.0
 margin_bottom = 95.0
 __meta__ = {
@@ -72,32 +72,33 @@ text = "Username"
 [node name="Username" type="LineEdit" parent="Background/VBoxContainer"]
 margin_top = 61.0
 margin_right = 160.0
-margin_bottom = 85.0
+margin_bottom = 90.0
+custom_fonts/font = ExtResource( 6 )
 
 [node name="PasswordTitle" type="Label" parent="Background/VBoxContainer"]
-margin_top = 89.0
+margin_top = 94.0
 margin_right = 160.0
-margin_bottom = 108.0
+margin_bottom = 113.0
 custom_fonts/font = ExtResource( 6 )
 text = "Password"
 
 [node name="Password" type="LineEdit" parent="Background/VBoxContainer"]
-margin_top = 112.0
+margin_top = 117.0
 margin_right = 160.0
-margin_bottom = 136.0
+margin_bottom = 146.0
+custom_fonts/font = ExtResource( 6 )
 
 [node name="LoginButton" type="TextureButton" parent="Background/VBoxContainer"]
-margin_left = 19.0
-margin_top = 140.0
-margin_right = 139.0
-margin_bottom = 170.0
+margin_left = 20.0
+margin_top = 150.0
+margin_right = 140.0
+margin_bottom = 180.0
 rect_min_size = Vector2( 120, 30 )
 size_flags_horizontal = 4
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 texture_hover = ExtResource( 4 )
 texture_disabled = ExtResource( 3 )
-texture_focused = ExtResource( 4 )
 expand = true
 
 [node name="Label" type="Label" parent="Background/VBoxContainer/LoginButton"]
@@ -112,17 +113,16 @@ __meta__ = {
 }
 
 [node name="CreateAccountButton" type="TextureButton" parent="Background/VBoxContainer"]
-margin_left = 19.0
-margin_top = 174.0
-margin_right = 139.0
-margin_bottom = 204.0
+margin_left = 20.0
+margin_top = 184.0
+margin_right = 140.0
+margin_bottom = 214.0
 rect_min_size = Vector2( 120, 30 )
 size_flags_horizontal = 4
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 texture_hover = ExtResource( 4 )
 texture_disabled = ExtResource( 3 )
-texture_focused = ExtResource( 4 )
 expand = true
 
 [node name="Label" type="Label" parent="Background/VBoxContainer/CreateAccountButton"]
@@ -132,6 +132,17 @@ custom_fonts/font = ExtResource( 5 )
 text = "Register"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ErrorMsg" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -19.0
+custom_fonts/font = ExtResource( 6 )
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

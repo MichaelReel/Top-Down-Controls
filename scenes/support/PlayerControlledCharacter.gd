@@ -12,14 +12,14 @@ var bow_taut := false
 var bow_loosed := false
 
 func _ready():
-	anim.connect("animation_finished", self, "_anim_done")
+	var _ignore = anim.connect("animation_finished", self, "_anim_done")
 
-func _physics_process(delta : float):
+func _physics_process(_delta : float):
 	var mouse = get_global_mouse_position();
 	var dir := _get_input_dir() * SPEED
 	var clicks = _get_input_clicks()
 	
-	move_and_slide(dir)
+	var _ignore = move_and_slide(dir)
 	sprite.look_at(mouse)
 	
 	# Rotate the sprite (but not the collision shape)
@@ -72,6 +72,5 @@ func _fire_arrow():
 	var arrow_transform = arrow.global_transform
 	ammo_slot.remove_child(arrow)
 	owner.add_child(arrow)
-	arrow.set_transform(sprite.global_transform)
-#	arrow.set_flying(true)
+	arrow.set_transform(arrow_transform)
 	arrow.flying = true
