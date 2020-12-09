@@ -5,7 +5,7 @@ var ip := "localhost"
 var port := 1980
 
 var connected := false
-var request_queue := {}
+var request_queue := { "skill" : {}, "stats" : {}}
 
 func connect_to_server():
 	var _ignore = network.create_client(ip, port)
@@ -28,16 +28,32 @@ func _on_server_disconnected():
 	print("Server disconnected")
 	connected = false
 
-func fetch_skill_data(key_path : String, target: Object, ret_func : String):
-	if not connected:
-		return
-	var inst_id : String = str(target.get_instance_id()) + ":" + key_path
-	print("requesting " + str(inst_id))
-	request_queue[inst_id] = {"target" : target, "method" : ret_func}
-	rpc_id(1, "fetch_skill_data", key_path, inst_id)
+# Some generic functions for queuing the responding to fetches
+func setup_return_path(queue_name: String, key: String, target: Object, method: String):
+	request_queue[queue_name][key] = {"target" : target, "method" : method}
 
-remote func return_skill_data(s_value, inst_id : String):
-	var target : Object = request_queue[inst_id]["target"]
-	var method : String = request_queue[inst_id]["method"]
+func forward_return_data(queue_name: String, key: String, s_value):
+	var target : Object = request_queue[queue_name][key]["target"]
+	var method : String = request_queue[queue_name][key]["method"]
 	target.call(method, s_value)
-	var _ignore = request_queue.erase(inst_id)
+	var _ignore = request_queue[queue_name].erase(key)
+
+# Request and process skill data
+func fetch_skill_data(key_path : String, target : Object, ret_func : String):
+	var key = str(target.get_instance_id()) + ":" + key_path
+	setup_return_path("skill", key, target, ret_func)
+	rpc_id(1, "fetch_skill_data", key_path, key)
+
+remote func return_skill_data(s_value, key : String):
+	forward_return_data("skill", key, s_value)
+
+# Request and process stats data
+func fetch_player_stats(target : Object, ret_func : String):
+	var key : String = str(target.get_instance_id())
+	setup_return_path("stats", key, target, ret_func)
+	rpc_id(1, "fetch_player_stats", key)
+
+remote func return_player_stats(s_value, key : String):
+	forward_return_data("stats", key, s_value)
+
+

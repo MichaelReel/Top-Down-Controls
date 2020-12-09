@@ -3,8 +3,6 @@
 [ext_resource path="res://scenes/support/arrow/arrow.png" type="Texture" id=1]
 [ext_resource path="res://scenes/support/arrow/Arrow.gd" type="Script" id=2]
 
-
-
 [sub_resource type="LineShape2D" id=1]
 normal = Vector2( 0, 0.32 )
 

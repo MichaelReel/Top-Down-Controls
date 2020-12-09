@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 export (PackedScene) var Arrow
+export (PackedScene) var StatsScreen
 
 const SPEED = 200
 onready var sprite := $AnimatedSprite
@@ -13,11 +14,14 @@ var bow_loosed := false
 
 func _ready():
 	var _ignore = anim.connect("animation_finished", self, "_anim_done")
-
+	
 func _physics_process(_delta : float):
 	var mouse = get_global_mouse_position();
 	var dir := _get_input_dir() * SPEED
 	var clicks = _get_input_clicks()
+	
+	if Input.is_action_just_pressed("character"):
+		_show_stats()
 	
 	var _ignore = move_and_slide(dir)
 	sprite.look_at(mouse)
@@ -74,3 +78,8 @@ func _fire_arrow():
 	owner.add_child(arrow)
 	arrow.set_transform(arrow_transform)
 	arrow.flying = true
+
+func _show_stats():
+	var stats_screen : Node = StatsScreen.instance()
+	get_tree().get_root().get_node("SceneHandler").show_ui_and_pause(stats_screen)
+	
