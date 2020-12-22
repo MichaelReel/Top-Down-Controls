@@ -1,13 +1,18 @@
 extends Node
 
+signal login_complete()
+signal login_failed(message)
+
 var network := NetworkedMultiplayerENet.new()
 var ip := "localhost"
 var port := 1980
 
+var token : String
 var connected := false
 var request_queue := { "skill" : {}, "stats" : {}}
 
-func connect_to_server():
+func connect_to_server(token):
+	self.token = token
 	var _ignore = network.create_client(ip, port)
 	get_tree().set_network_peer(network)
 	
@@ -27,6 +32,16 @@ func _on_connection_succeeded():
 func _on_server_disconnected():
 	print("Server disconnected")
 	connected = false
+
+# Token request and return
+remote func fetch_token():
+	rpc_id(1, "return_token", token)
+
+remote func return_token_verification_results(result):
+	if result == true:
+		emit_signal("login_complete")
+	else:
+		emit_signal("login_failed", "Authentication failed. Token verification was unsuccessful.")
 
 # Some generic functions for queuing the responding to fetches
 func setup_return_path(queue_name: String, key: String, target: Object, method: String):

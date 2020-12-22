@@ -2,7 +2,6 @@ extends Node
 
 signal login_reset()
 signal login_failed(message)
-signal login_complete()
 
 var network : NetworkedMultiplayerENet
 var gateway_api : MultiplayerAPI
@@ -47,7 +46,7 @@ func request_login():
 	username = ""
 	password = ""
 
-remote func return_login_request(results):
+remote func return_login_request(results, token):
 	print("login results received")
 	
 	# re-enable login button
@@ -57,8 +56,7 @@ remote func return_login_request(results):
 	if results == false:
 		emit_signal("login_failed", "Authentication failed. Please provide correct username and password")
 	else:
-		Server.connect_to_server()
-		emit_signal("login_complete")
+		Server.connect_to_server(token)
 	
 	network.disconnect("connection_failed", self, "_on_connection_failed")
 	network.disconnect("connection_succeeded", self, "_on_connection_succeeded")
